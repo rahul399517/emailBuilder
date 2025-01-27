@@ -17,7 +17,7 @@ export default function SubmitButton({ children, variant, className, size }) {
     sx={{
       mt: 3,
       mb: 2,
-      width: "330px",
+      width: "28vw",
 
       background: "linear-gradient(to right, #6a11cb, #2575fc)",
       color: "white",

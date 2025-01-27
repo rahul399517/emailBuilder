@@ -4,9 +4,10 @@ import {
   } from "@/lib/validator/auth";
   import db from "@/db";
   import { hash, compare } from "bcryptjs";
-//   import { auth, signIn } from "@/lib/auth";/\
-import { signIn } from "@/lib/auth";
+import bcrypt from "bcryptjs";
+import { sign } from "jsonwebtoken";
 import { userlogin } from "@/lib/validator/auth";
+
   export async function signup(formstate, formData) {
     const schema = await userSchema();
     const result = schema.safeParse({
@@ -52,6 +53,8 @@ import { userlogin } from "@/lib/validator/auth";
   }
 
 
+
+  
   export async function login(formstate, formData) {
     const schema = await userlogin();
     const result = schema.safeParse({
@@ -60,17 +63,17 @@ import { userlogin } from "@/lib/validator/auth";
     });
   
     if (!result.success) {
-        console.log("here it is  ", result.error.flatten().fieldErrors,)
       return {
         errors: result.error.flatten().fieldErrors,
       };
     }
   
     const { email, password } = result.data;
+  
     const existingUser = await db.user.findUnique({
       where: { email },
     });
-  console.log("existing user us ",existingUser)
+  
     if (!existingUser) {
       return {
         errors: {
@@ -78,35 +81,44 @@ import { userlogin } from "@/lib/validator/auth";
         },
       };
     }
-   
-    try {
-      const response = await signIn("credentials", {
-        redirect: false,
-        email,
-        password,
-      });
   
-      if (!response || response.error) {
-        return {
-          errors: {
-            email: `Invalid email or password.`,
-            password:  "Invalid email or password",
-          },
-        };
-      }
-  
-      return {
-        message: "Login success.",
-      };
-    } catch (error) {
-      console.error("Error during sign-in:", error);
-  
+    const isPasswordValid = await bcrypt.compare(password, existingUser.password);
+    if (!isPasswordValid) {
       return {
         errors: {
           email: "Invalid email or password.",
-          password:"Invalid email or password.",
+          password: "Invalid email or password.",
+        },
+      };
+    }
+  
+    try {
+      // Use a valid secret for JWT generation
+      const secret = process.env.NEXTAUTH_SECRET || "default_secret_key";
+  
+      const token = sign(
+        {
+          id: existingUser.id,
+          email: existingUser.email,
+          role: existingUser.role,
+        },
+        secret,
+        { expiresIn: "1h" }
+      );
+  
+      return {
+        message: "Login success.",
+        token,
+      };
+    } catch (error) {
+      console.error("Error during JWT generation:", error);
+  
+      return {
+        errors: {
+          server: "An internal server error occurred.",
         },
       };
     }
   }
+  
   

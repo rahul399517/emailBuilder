@@ -5,6 +5,7 @@ import {
   TextField,
   Typography,
   Grid,
+  Button,
   Link,
   Avatar,
   FormHelperText,
@@ -15,6 +16,7 @@ import { useRouter } from "next/navigation";
 import { login } from "@/action/auth";
 import { useEffect } from "react";
 import SubmitButton from "../buttons/submit-button";
+import ToastNotification from "../toast/success-toast";
 const LoginForm = () => {
   const router = useRouter();
   const [formState, action] = React.useActionState(login, {
@@ -23,7 +25,10 @@ const LoginForm = () => {
   });
   useEffect(() => {
     if (formState?.message === "Login success.") {
-      router.push(`/signup`);
+      const timeout = setTimeout(() => {
+        router.push(`/signup`);
+      }, 3000); 
+      return () => clearTimeout(timeout);
     }
   }, [formState, router]);
 
@@ -71,53 +76,56 @@ const LoginForm = () => {
               </Link>
             </Grid>
           </Grid>
-          <Box sx={{ position: "relative", marginBottom: "30px" }}>
+          <Box sx={{ position: "relative", marginBottom: "20px" }}>
             <SubmitButton variant="contained" size="medium">
               Log in
             </SubmitButton>
           </Box>
         </form>
-
         <Typography
           variant="body2"
-          align="center"
-          sx={{ mt: 2, fontWeight: "bold", color: "gray" }}
+          sx={{ color: "#6c757d", margin: "16px 0", textAlign: "center" }}
         >
-          Or Sign Up Using
+          OR
         </Typography>
-        <Grid container spacing={2} justifyContent="center" sx={{ mt: 1 }}>
-          <Grid item>
-            <Avatar sx={{ bgcolor: "#4267B2", cursor: "pointer" }}>
-              <Facebook />
-            </Avatar>
-          </Grid>
-          <Grid item>
-            <Avatar sx={{ bgcolor: "#1DA1F2", cursor: "pointer" }}>
-              <Twitter />
-            </Avatar>
-          </Grid>
-          <Grid item>
-            <Avatar sx={{ bgcolor: "#DB4437", cursor: "pointer" }}>
-              <Google />
-            </Avatar>
+        <Button
+          variant="outlined"
+          fullWidth
+          startIcon={<Google />}
+          sx={{
+            borderColor: "#db4437",
+            color: "#db4437",
+            "&:hover": {
+              backgroundColor: "#fdecea",
+              borderColor: "#db4437",
+            },
+          }}
+        >
+          Sign in with Google
+        </Button>
+        <Grid container sx={{ marginTop: 2 }}>
+          {/* <Grid item xs>
+                  <Link href="#" variant="body2" sx={{ color: "primary.main" }}>
+                    Forgot password?
+                  </Link>
+                </Grid> */}
+          <Grid container justifyContent="center">
+            <Grid item>
+              <Typography variant="body2" sx={{ color: "gray" }}>
+                Don't have an account?{" "}
+                <Link href="/signup" variant="body2">
+                  Sign up
+                </Link>
+              </Typography>
+            </Grid>
           </Grid>
         </Grid>
-        <Typography
-          variant="body2"
-          align="center"
-          sx={{ mt: 3, color: "gray" }}
-        >
-          Or Sign Up Using
-        </Typography>
-        <Link
-          href="/signup"
-          variant="body2"
-          align="center"
-          sx={{ display: "block", mt: 1 }}
-        >
-          SIGN UP
-        </Link>
       </Box>
+      {formState?.message === "Login success." && (
+      <ToastNotification
+        message="🎉 Loged in succesfully!"
+
+      />)}
     </>
   );
 };
