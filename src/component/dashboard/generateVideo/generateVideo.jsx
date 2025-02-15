@@ -86,8 +86,14 @@ export default function CreateVideoPage() {
   // Form content component
   const FormContent = () => (
     <>
-      <Typography variant="h4" fontWeight="bold" textAlign="center" mb={4} color="#333">
-        Create Your AI-Generated Anime Video
+      <Typography
+        variant="h4"
+        fontWeight="bold"
+        textAlign="center"
+        mb={4}
+        color="#333"
+      >
+        Create Your AI-Generated Short Anime Video
       </Typography>
       <TextField
         fullWidth
@@ -185,22 +191,28 @@ export default function CreateVideoPage() {
           "&:hover": { backgroundColor: "#0d47a1" },
         }}
       >
-        {loading ? <CircularProgress size={24} color="inherit" /> : "Generate Video"}
+        {loading ? (
+          <CircularProgress size={24} color="inherit" />
+        ) : (
+          "Generate Video"
+        )}
       </Button>
     </>
   );
 
   return (
     <Box sx={{ width: "100%", backgroundColor: "#fff", p: { xs: 2, md: 4 } }}>
-      {/* Header */}
+      {/* Responsive Header */}
       <Box
         sx={{
           maxWidth: "1000px",
           mx: "auto",
           mb: 4,
           display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
           justifyContent: "space-between",
-          alignItems: "center",
+          alignItems: { xs: "flex-start", sm: "center" },
+          gap: { xs: 2, sm: 0 },
         }}
       >
         <Typography variant="h6" color="#333">
@@ -224,7 +236,13 @@ export default function CreateVideoPage() {
             {/* Right Column: Video Preview */}
             <Grid item xs={12} md={6}>
               <Box sx={{ mb: 2 }}>
-                <Box sx={{ position: "relative", paddingBottom: "56.25%", height: 0 }}>
+                <Box
+                  sx={{
+                    position: "relative",
+                    paddingBottom: "56.25%",
+                    height: 0,
+                  }}
+                >
                   <Box
                     component="iframe"
                     src={videoUrl}

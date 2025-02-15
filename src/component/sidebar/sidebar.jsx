@@ -10,8 +10,10 @@ import {
   ListItemText,
   Divider,
   Button,
-  useMediaQuery
+  useMediaQuery,
+  Typography,
 } from '@mui/material';
+import ShopIcon from '@mui/icons-material/Shop';
 import { useTheme } from '@mui/material/styles';
 import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -24,17 +26,20 @@ import SchoolIcon from '@mui/icons-material/School';
 import MarkUnreadChatAltIcon from '@mui/icons-material/MarkUnreadChatAlt';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import Image from 'next/image';
-// import { useRouter } from 'next/router';
 import logo from "../../../public/image/logo.png";
 import { useRouter } from 'next/navigation';
+
 const drawerWidth = 240;
 
 export default function ResponsiveSideNav() {
   const theme = useTheme();
-  const router = useRouter(); // Hook for navigation
-
+  const router = useRouter();
   const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
+  
+  // State for mobile drawer and current credits
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [credits, setCredits] = React.useState(200);
+
   const handleDrawerToggle = () => setMobileOpen((prev) => !prev);
 
   const handleNavigation = (path) => {
@@ -66,32 +71,31 @@ export default function ResponsiveSideNav() {
         />
       </Box>
 
-      {/* Navigation links */}
+      {/* Current Credits */}
+      <Box
+        sx={{
+          p: 2,
+          textAlign: 'center',
+          backgroundColor: '#f5f5f5',
+          borderRadius: 1,
+          mx: 2,
+          my: 1,
+        }}
+      >
+        <Typography variant="subtitle1" color="textSecondary">
+          Credits: {credits}
+        </Typography>
+      </Box>
+
+      {/* Navigation Links */}
       <Box sx={{ flexGrow: 1, overflow: 'auto', mt: 2 }}>
         <List>
-          {/* <ListItem disablePadding>
-            <ListItemButton
-              onClick={() => handleNavigation('/home')}
-              sx={{
-                '&:hover': {
-                  background: "linear-gradient(to right, #6a11cb, #2575fc)",
-                  color: '#fff',
-                  '& .MuiListItemIcon-root': { color: '#fff' },
-                },
-              }}
-            >
-              <ListItemIcon sx={{ color: 'inherit' }}>
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText primary="Home" />
-            </ListItemButton>
-          </ListItem> */}
           <ListItem disablePadding>
             <ListItemButton
               onClick={() => handleNavigation('/dashboard')}
               sx={{
                 '&:hover': {
-                  background: "linear-gradient(to right, #6a11cb, #2575fc)",
+                  background: 'linear-gradient(to right, #6a11cb, #2575fc)',
                   color: '#fff',
                   '& .MuiListItemIcon-root': { color: '#fff' },
                 },
@@ -104,65 +108,12 @@ export default function ResponsiveSideNav() {
             </ListItemButton>
           </ListItem>
 
-          {/* <ListItem disablePadding>
-            <ListItemButton
-              onClick={() => handleNavigation('/myProject')}
-              sx={{
-                '&:hover': {
-                  background: "linear-gradient(to right, #6a11cb, #2575fc)",
-                  color: '#fff',
-                  '& .MuiListItemIcon-root': { color: '#fff' },
-                },
-              }}
-            >
-              <ListItemIcon sx={{ color: 'inherit' }}>
-                <AccountTreeIcon />
-              </ListItemIcon>
-              <ListItemText primary="My projects" />
-            </ListItemButton>
-          </ListItem> */}
-
-          {/* <ListItem disablePadding>
-            <ListItemButton
-              onClick={() => handleNavigation('/websiteCollection')}
-              sx={{
-                '&:hover': {
-                  background: "linear-gradient(to right, #6a11cb, #2575fc)",
-                  color: '#fff',
-                  '& .MuiListItemIcon-root': { color: '#fff' },
-                },
-              }}
-            >
-              <ListItemIcon sx={{ color: 'inherit' }}>
-                <CollectionsIcon />
-              </ListItemIcon>
-              <ListItemText primary="Website collections" />
-            </ListItemButton>
-          </ListItem> */}
-
-          {/* <ListItem disablePadding>
-            <ListItemButton
-              onClick={() => handleNavigation('/myCourses')}
-              sx={{
-                '&:hover': {
-                  background: "linear-gradient(to right, #6a11cb, #2575fc)",
-                  color: '#fff',
-                  '& .MuiListItemIcon-root': { color: '#fff' },
-                },
-              }}
-            >
-              <ListItemIcon sx={{ color: 'inherit' }}>
-                <SchoolIcon />
-              </ListItemIcon>
-              <ListItemText primary="My Courses" />
-            </ListItemButton>
-          </ListItem> */}
           <ListItem disablePadding>
             <ListItemButton
               onClick={() => handleNavigation('/allCourses')}
               sx={{
                 '&:hover': {
-                  background: "linear-gradient(to right, #6a11cb, #2575fc)",
+                  background: 'linear-gradient(to right, #6a11cb, #2575fc)',
                   color: '#fff',
                   '& .MuiListItemIcon-root': { color: '#fff' },
                 },
@@ -174,12 +125,31 @@ export default function ResponsiveSideNav() {
               <ListItemText primary="Public Creations" />
             </ListItemButton>
           </ListItem>
+
+          <ListItem disablePadding>
+            <ListItemButton
+              onClick={() => handleNavigation('/credits')}
+              sx={{
+                '&:hover': {
+                  background: 'linear-gradient(to right, #6a11cb, #2575fc)',
+                  color: '#fff',
+                  '& .MuiListItemIcon-root': { color: '#fff' },
+                },
+              }}
+            >
+              <ListItemIcon sx={{ color: 'inherit' }}>
+                <ShopIcon />
+              </ListItemIcon>
+              <ListItemText primary="Credits" />
+            </ListItemButton>
+          </ListItem>
+
           <ListItem disablePadding>
             <ListItemButton
               onClick={() => handleNavigation('/alert')}
               sx={{
                 '&:hover': {
-                  background: "linear-gradient(to right, #6a11cb, #2575fc)",
+                  background: 'linear-gradient(to right, #6a11cb, #2575fc)',
                   color: '#fff',
                   '& .MuiListItemIcon-root': { color: '#fff' },
                 },
@@ -188,7 +158,7 @@ export default function ResponsiveSideNav() {
               <ListItemIcon sx={{ color: 'inherit' }}>
                 <MarkUnreadChatAltIcon />
               </ListItemIcon>
-              <ListItemText primary="alerts" />
+              <ListItemText primary="Alerts" />
             </ListItemButton>
           </ListItem>
 
@@ -197,7 +167,7 @@ export default function ResponsiveSideNav() {
               onClick={() => handleNavigation('/setting')}
               sx={{
                 '&:hover': {
-                  background: "linear-gradient(to right, #6a11cb, #2575fc)",
+                  background: 'linear-gradient(to right, #6a11cb, #2575fc)',
                   color: '#fff',
                   '& .MuiListItemIcon-root': { color: '#fff' },
                 },
@@ -213,7 +183,8 @@ export default function ResponsiveSideNav() {
       </Box>
 
       <Divider />
-      {/* Logout button at bottom */}
+
+      {/* Logout Button */}
       <Button
         variant="contained"
         fullWidth
@@ -222,7 +193,7 @@ export default function ResponsiveSideNav() {
           background: 'white',
           color: 'black',
           '&:hover': {
-            background: "linear-gradient(to right, #6a11cb, #2575fc)",
+            background: 'linear-gradient(to right, #6a11cb, #2575fc)',
             color: 'white',
           },
         }}
@@ -253,9 +224,7 @@ export default function ResponsiveSideNav() {
         variant="temporary"
         open={!isMdUp && mobileOpen}
         onClose={handleDrawerToggle}
-        ModalProps={{
-          keepMounted: true,
-        }}
+        ModalProps={{ keepMounted: true }}
         sx={{
           display: { xs: 'block', md: 'none' },
           '& .MuiDrawer-paper': { width: drawerWidth },
@@ -277,4 +246,5 @@ export default function ResponsiveSideNav() {
     </Box>
   );
 }
+
 export { drawerWidth };
