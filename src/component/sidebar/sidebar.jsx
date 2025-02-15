@@ -69,7 +69,7 @@ export default function ResponsiveSideNav() {
       {/* Navigation links */}
       <Box sx={{ flexGrow: 1, overflow: 'auto', mt: 2 }}>
         <List>
-          <ListItem disablePadding>
+          {/* <ListItem disablePadding>
             <ListItemButton
               onClick={() => handleNavigation('/home')}
               sx={{
@@ -85,7 +85,7 @@ export default function ResponsiveSideNav() {
               </ListItemIcon>
               <ListItemText primary="Home" />
             </ListItemButton>
-          </ListItem>
+          </ListItem> */}
           <ListItem disablePadding>
             <ListItemButton
               onClick={() => handleNavigation('/dashboard')}

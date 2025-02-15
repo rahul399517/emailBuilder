@@ -26,7 +26,7 @@ const LoginForm = () => {
   useEffect(() => {
     if (formState?.message === "Login success.") {
       const timeout = setTimeout(() => {
-        router.push(`/home`);
+        router.push(`/dashboard`);
       }, 1000); 
       return () => clearTimeout(timeout);
     }

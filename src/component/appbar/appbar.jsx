@@ -27,17 +27,17 @@ export default function MyAppBar() {
         {/* Left side: Title and Date */}
         <Box>
           {/* "Today's Plan" with dropdown arrow */}
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          {/* <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Typography variant="h6" sx={{ mr: 1 }}>
               Today’s Plan
             </Typography>
             <ArrowDropDownIcon />
-          </Box>
+          </Box> */}
 
           {/* Date */}
-          <Typography variant="body2" color="text.secondary">
+          {/* <Typography variant="body2" color="text.secondary">
             March 27th, 2023
-          </Typography>
+          </Typography> */}
         </Box>
 
         {/* Right side: Notification + User Info */}

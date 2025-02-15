@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { useRouter } from "next/navigation";
 import {
   Box,
   Typography,
@@ -14,6 +15,7 @@ import LinearProgress from "@mui/material/LinearProgress";
 import BuildIcon from "@mui/icons-material/Build";
 
 const projectProgressData = [
+  // Example project data (currently commented out)
   // {
   //   title: "E-Commerce Website Progress",
   //   completed: 80,
@@ -33,9 +35,14 @@ const projectProgressData = [
 ];
 
 export default function ProjectProgress() {
+  const router = useRouter();
+
   return (
     <Box>
-      <Typography variant="h5" sx={{ mt: 4, mb: 3, fontWeight: "bold", color: "#333" }}>
+      <Typography
+        variant="h5"
+        sx={{ mt: 4, mb: 3, fontWeight: "bold", color: "#333" }}
+      >
         Project Progress
       </Typography>
       <Grid container spacing={3}>
@@ -46,7 +53,7 @@ export default function ProjectProgress() {
               borderRadius: 4,
               backgroundColor: "#F9F9F9",
               boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-              height: "320px", // Same height as other cards
+              height: "320px",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
@@ -54,11 +61,17 @@ export default function ProjectProgress() {
             }}
           >
             <CardContent sx={{ textAlign: "center" }}>
-              <AddCircleOutlineIcon sx={{ fontSize: 50, color: "#FF9800", mb: 1 }} />
+              <AddCircleOutlineIcon
+                sx={{ fontSize: 50, color: "#FF9800", mb: 1 }}
+              />
               <Typography variant="h6" fontWeight="bold" sx={{ mb: 2 }}>
                 Create New Project
               </Typography>
-              <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ mb: 3 }}
+              >
                 Start building your next amazing project.
               </Typography>
               <Button
@@ -74,7 +87,7 @@ export default function ProjectProgress() {
                     backgroundColor: "#E68900",
                   },
                 }}
-                onClick={() => alert("Redirect to Create Project Page")}
+                onClick={() => router.push("/generateVideo")}
               >
                 Create Project
               </Button>
@@ -106,7 +119,11 @@ export default function ProjectProgress() {
                 }}
               />
               <CardContent sx={{ p: 3 }}>
-                <Typography variant="subtitle1" fontWeight="bold" sx={{ mb: 2, color: "#333" }}>
+                <Typography
+                  variant="subtitle1"
+                  fontWeight="bold"
+                  sx={{ mb: 2, color: "#333" }}
+                >
                   {project.title}
                 </Typography>
                 <Box sx={{ mb: 2 }}>
@@ -145,7 +162,9 @@ export default function ProjectProgress() {
                         backgroundColor: "#388E3C",
                       },
                     }}
-                    onClick={() => alert(`Navigating to ${project.builderLink}`)}
+                    onClick={() =>
+                      alert(`Navigating to ${project.builderLink}`)
+                    }
                   >
                     Continue Building
                   </Button>

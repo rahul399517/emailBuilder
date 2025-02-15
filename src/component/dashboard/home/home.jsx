@@ -182,22 +182,22 @@ export default function HomePage() {
             overflow: "hidden",
           }}
         >
-          <Box
-            component="iframe"
-            src="https://www.youtube.com/embed/CeItO4-ARfk?autoplay=1&mute=1&loop=1&playlist=CeItO4-ARfk"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: { xs: "240%", sm: "170%", md: "170%" },
-              height: { xs: "240%", sm: "170%", md: "170%" },
-            }}
-          />
-        </Box>
+        <Box
+  component="iframe"
+  src="https://www.youtube.com/embed/CeItO4-ARfk?autoplay=1&mute=1&loop=1&playlist=CeItO4-ARfk&vq=hd720&modestbranding=1&rel=0"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+  sx={{
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: { xs: "240%", sm: "170%", md: "170%" },
+    height: { xs: "240%", sm: "170%", md: "170%" },
+  }}
+/>
+</Box>
         {/* Hero Overlay */}
         <Box
           sx={{
