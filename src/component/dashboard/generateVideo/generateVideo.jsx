@@ -220,7 +220,7 @@ export default function CreateVideoPage() {
         </Typography>
         <Button
           variant="outlined"
-          onClick={() => router.push("/buy-credits")}
+          onClick={() => router.push("/credits")}
           sx={{ borderColor: "#333", color: "#333" }}
         >
           Buy Credits
