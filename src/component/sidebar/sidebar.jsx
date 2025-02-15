@@ -104,7 +104,7 @@ export default function ResponsiveSideNav() {
             </ListItemButton>
           </ListItem>
 
-          <ListItem disablePadding>
+          {/* <ListItem disablePadding>
             <ListItemButton
               onClick={() => handleNavigation('/myProject')}
               sx={{
@@ -120,9 +120,9 @@ export default function ResponsiveSideNav() {
               </ListItemIcon>
               <ListItemText primary="My projects" />
             </ListItemButton>
-          </ListItem>
+          </ListItem> */}
 
-          <ListItem disablePadding>
+          {/* <ListItem disablePadding>
             <ListItemButton
               onClick={() => handleNavigation('/websiteCollection')}
               sx={{
@@ -138,9 +138,9 @@ export default function ResponsiveSideNav() {
               </ListItemIcon>
               <ListItemText primary="Website collections" />
             </ListItemButton>
-          </ListItem>
+          </ListItem> */}
 
-          <ListItem disablePadding>
+          {/* <ListItem disablePadding>
             <ListItemButton
               onClick={() => handleNavigation('/myCourses')}
               sx={{
@@ -156,7 +156,7 @@ export default function ResponsiveSideNav() {
               </ListItemIcon>
               <ListItemText primary="My Courses" />
             </ListItemButton>
-          </ListItem>
+          </ListItem> */}
           <ListItem disablePadding>
             <ListItemButton
               onClick={() => handleNavigation('/allCourses')}
@@ -171,7 +171,7 @@ export default function ResponsiveSideNav() {
               <ListItemIcon sx={{ color: 'inherit' }}>
                 <WorkHistoryIcon />
               </ListItemIcon>
-              <ListItemText primary="All Courses" />
+              <ListItemText primary="Public Creations" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>

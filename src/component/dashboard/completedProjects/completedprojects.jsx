@@ -12,68 +12,44 @@ import {
   Tooltip,
 } from "@mui/material";
 import DownloadIcon from "@mui/icons-material/Download";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import PaidIcon from "@mui/icons-material/Paid";
-import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import EditIcon from "@mui/icons-material/Edit";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
-const completedProjects = [
+const userProjects = [
   {
-    title: "E-Commerce Website",
-    subtitle: "Fully Completed",
-    price: 399,
-    paid: true,
-    previewImage: "https://xdfile.com/wp-content/uploads/2021/01/Free-E-Commerce-App-XD-UI-Design-1024x715.jpg",
+    title: "Epic Battle Scene",
+    subtitle: "Generated using AI",
+    status: "Completed",
+    previewImage: "https://static1.cbrimages.com/wordpress/wp-content/uploads/2023/06/collage-maker-24-jun-2023-06-47-pm-6371.jpg",
   },
   {
-    title: "Portfolio Website",
-    subtitle: "Fully Completed",
-    price: 399,
-    paid: false,
-    previewImage: "https://s3-figma-hubfile-images-production.figma.com/hub/file/carousel/img/70b290e955b05e07a037149d731fcedb9232ee68",
+    title: "Fantasy World",
+    subtitle: "Work in Progress",
+    status: "In Progress",
+    previewImage: "https://i.ytimg.com/vi/k86vMdE3gws/maxresdefault.jpg",
   },
   {
-    title: "Landing Page Design",
-    subtitle: "High Conversion Rate",
-    price: 299,
-    paid: false,
-    previewImage: "https://blog.tubikstudio.com/wp-content/uploads/2023/07/posters-application-ecommerce-design-tubik.jpg",
-  },
-  {
-    title: "Blog Website",
-    subtitle: "Fully Responsive Design",
-    price: 349,
-    paid: true,
-    previewImage: "https://uizard.io/static/shoutout-image-a-b7da030efb79ca33e0f1791d0bd8c2f8.png",
-  },
-  {
-    title: "Personal Portfolio",
-    subtitle: "Modern & Minimalist",
-    price: 399,
-    paid: false,
-    previewImage: "https://i.pinimg.com/736x/14/f4/a9/14f4a95b64665f63adb8713f96b5cf41.jpg",
-  },
-  {
-    title: "Real Estate Website",
-    subtitle: "Search Optimized",
-    price: 499,
-    paid: false,
-    previewImage: "https://framerusercontent.com/images/PjbS2VqB7vVkjQVGi7h0hium3HY.png",
+    title: "Cyberpunk City",
+    subtitle: "Created with AI Animation",
+    status: "Completed",
+    previewImage: "https://staticg.sportskeeda.com/editor/2024/12/6f3a4-17343509578885-1920.jpg",
   },
 ];
 
-export default function CompletedProjects() {
+export default function UserProjects() {
   return (
     <Box>
       <Typography variant="h5" sx={{ mt: 4, mb: 2, fontWeight: "bold", color: "#333" }}>
-        Completed Website Projects
+        Your Anime AI Projects
       </Typography>
       <Grid container spacing={3}>
-        {completedProjects.map((project, index) => (
+        {userProjects.map((project, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
             <Card
               sx={{
                 borderRadius: 3,
-                backgroundColor: project.paid ? "#DFF5E4" : "#FFF2E0",
+                backgroundColor: project.status === "Completed" ? "#DFF5E4" : "#FFF2E0",
                 boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
               }}
             >
@@ -90,7 +66,6 @@ export default function CompletedProjects() {
                 }}
               />
               <CardContent>
-                {/* Title and Subtitle */}
                 <Typography variant="subtitle1" fontWeight="bold" sx={{ mb: 1 }}>
                   {project.title}
                 </Typography>
@@ -98,18 +73,6 @@ export default function CompletedProjects() {
                   {project.subtitle}
                 </Typography>
 
-                {/* Special Offer for Unpaid Projects */}
-                {!project.paid && (
-                  <Chip
-                    icon={<LocalOfferIcon />}
-                    label="Limited Offer"
-                    color="warning"
-                    size="small"
-                    sx={{ mt: 1, fontWeight: "bold" }}
-                  />
-                )}
-
-                {/* Payment or Download Button */}
                 <Box
                   sx={{
                     display: "flex",
@@ -118,10 +81,10 @@ export default function CompletedProjects() {
                     mt: 2,
                   }}
                 >
-                  {project.paid ? (
+                  {project.status === "Completed" ? (
                     <Button
                       variant="contained"
-                      startIcon={<DownloadIcon />}
+                      startIcon={<PlayCircleOutlineIcon />}
                       sx={{
                         backgroundColor: "#1976d2",
                         color: "#fff",
@@ -132,13 +95,13 @@ export default function CompletedProjects() {
                         },
                       }}
                     >
-                      Download
+                      Play Video
                     </Button>
                   ) : (
-                    <Tooltip title={`Buy this project for ₹${project.price}`} arrow>
+                    <Tooltip title="Continue Editing" arrow>
                       <Button
                         variant="outlined"
-                        startIcon={<ShoppingCartIcon />}
+                        startIcon={<EditIcon />}
                         sx={{
                           borderColor: "#FF5722",
                           color: "#FF5722",
@@ -150,16 +113,15 @@ export default function CompletedProjects() {
                             color: "#E64A19",
                           },
                         }}
-                        onClick={() => alert(`Redirecting to payment for ${project.title}`)}
                       >
-                        Buy Now
+                        Edit
                       </Button>
                     </Tooltip>
                   )}
                   <Chip
-                    icon={<PaidIcon />}
-                    label={project.paid ? "Paid" : "Unpaid"}
-                    color={project.paid ? "success" : "error"}
+                    icon={<VisibilityIcon />}
+                    label={project.status}
+                    color={project.status === "Completed" ? "success" : "warning"}
                     size="small"
                   />
                 </Box>

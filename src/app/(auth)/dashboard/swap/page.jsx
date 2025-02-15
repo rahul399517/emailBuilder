@@ -11,8 +11,8 @@ export default function AdminDashboard() {
     <div>
       <ProjectProgress />
       <CompletedProjects />
-      <MyCourses />
-      <WebAppsProduct />
+      {/* <MyCourses />
+      <WebAppsProduct /> */}
       <AllCourses />
 
       <Insights />

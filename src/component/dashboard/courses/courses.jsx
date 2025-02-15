@@ -12,85 +12,49 @@ import {
   InputAdornment,
   Tooltip,
 } from "@mui/material";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import SearchIcon from "@mui/icons-material/Search";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
-const allCourses = [
+const publicCreations = [
   {
-    title: "React for Beginners",
-    description: "Learn the basics of React and build your first app.",
-    enrolled: true, // User has bought this course
-    price: 499,
-    image: "https://courses.xzect.com/wp-content/uploads/2023/08/ui-ux-design.jpg",
+    title: "Epic Battle Scene",
+    creator: "AnimeMasterX",
+    status: "Completed",
+    previewImage: "https://i.pinimg.com/736x/56/ea/13/56ea137f0f574a5e33f6b80169c3cc7c.jpg",
   },
   {
-    title: "Web Development Bootcamp",
-    description: "A complete course to become a full-stack web developer.",
-    enrolled: true, // User has bought this course
-    price: 999,
-    image: "https://i.ytimg.com/vi/X6saBZFgj1M/hq720.jpg?sqp=-oaymwEXCK4FEIIDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBGDn8kZVrfuxxM5zAqQs-KFaOJOA",
+    title: "Fantasy World",
+    creator: "DreamWeaver",
+    status: "In Progress",
+    previewImage: "https://dslv9ilpbe7p1.cloudfront.net/FlTp42jQb0OntYxwcs6S3A_store_banner_image.jpeg",
   },
   {
-    title: "Advanced JavaScript",
-    description: "Master the intricacies of JavaScript programming.",
-    enrolled: false, // User has not bought this course
-    price: 699,
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMiIll93VAVK76-TZuBLvG3QTJUuUYW-NWWg&s",
-  },
-  {
-    title: "UI/UX Design Fundamentals",
-    description: "Learn the principles of design for modern interfaces.",
-    enrolled: false, // User has not bought this course
-    price: 399,
-    image: "https://media.licdn.com/dms/image/v2/D4D12AQG_Q-OQ8Qqisg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1680181974410?e=2147483647&v=beta&t=TMXqJDFZorHs9XsK882PXpH58nK6mvtYBGD5kxJT2DI",
-  },
-  {
-    title: "Python for Data Science",
-    description: "Kickstart your career in Data Science with Python.",
-    enrolled: false, // User has not bought this course
-    price: 799,
-    image: "https://static.vecteezy.com/system/resources/previews/007/933/203/non_2x/learning-course-dashboard-design-ui-kit-vector.jpg",
-  },
-  {
-    title: "Machine Learning Basics",
-    description: "Understand the fundamentals of machine learning.",
-    enrolled: false, // User has not bought this course
-    price: 899,
-    image: "https://www.thinknexttraining.com/images/ui-ux-design-course-banner.jpg",
+    title: "Cyberpunk City",
+    creator: "TechNomad",
+    status: "Completed",
+    previewImage: "https://comicbook.com/wp-content/uploads/sites/4/2025/02/These-10-Anime-Turn-20-in-2025.jpeg",
   },
 ];
 
-export default function AllCourses() {
+export default function PublicCreations() {
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Filter courses that the user has NOT bought
-  const filteredCourses = allCourses
-    .filter((course) => !course.enrolled) // Only show unenrolled courses
-    .filter(
-      (course) =>
-        course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        course.description.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+  const filteredCreations = publicCreations.filter(
+    (creation) =>
+      creation.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      creation.creator.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
-    <Box sx={{ py: 6, px: 3, backgroundColor: "#F4F6F8" }}>
-      {/* Header */}
-      <Typography
-        variant="h4"
-        sx={{
-          fontWeight: "bold",
-          color: "#222",
-          textAlign: "center",
-          mb: 4,
-        }}
-      >
-        Available Courses
+    <Box>
+      <Typography variant="h5" sx={{ mt: 4, mb: 2, fontWeight: "bold", color: "#333" }}>
+        Public Anime AI Creations
       </Typography>
 
-      {/* Search Bar */}
       <Box sx={{ mb: 4, textAlign: "center" }}>
         <TextField
-          placeholder="Search for courses..."
+          placeholder="Search creations..."
           variant="outlined"
           size="medium"
           fullWidth
@@ -111,99 +75,95 @@ export default function AllCourses() {
         />
       </Box>
 
-      {/* Courses Grid */}
-      <Grid container spacing={3} justifyContent="center">
-        {filteredCourses.map((course, index) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+      <Grid container spacing={3}>
+        {filteredCreations.map((creation, index) => (
+          <Grid item xs={12} sm={6} md={4} key={index}>
             <Card
               sx={{
-                borderRadius: 4,
-                boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.1)",
-                transition: "transform 0.3s, box-shadow 0.3s",
-                height: "400px", // Uniform card size
-                display: "flex",
-                flexDirection: "column",
-                "&:hover": {
-                  transform: "scale(1.05)",
-                  boxShadow: "0px 12px 24px rgba(0, 0, 0, 0.2)",
-                },
+                borderRadius: 3,
+                backgroundColor: creation.status === "Completed" ? "#DFF5E4" : "#FFF2E0",
+                boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
               }}
             >
               <CardMedia
                 component="img"
-                image={course.image}
-                alt={course.title}
+                image={creation.previewImage}
+                alt={creation.title}
                 sx={{
                   width: "100%",
-                  height: "160px",
+                  height: 140,
                   objectFit: "cover",
+                  borderTopLeftRadius: "12px",
+                  borderTopRightRadius: "12px",
                 }}
               />
-              <CardContent
-                sx={{
-                  flexGrow: 1,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  p: 2,
-                  textAlign: "center",
-                }}
-              >
-                {/* Title and Description */}
-                <Box>
-                  <Typography
-                    variant="subtitle1"
-                    fontWeight="bold"
-                    sx={{ mb: 1, color: "#333" }}
-                  >
-                    {course.title}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    sx={{ mb: 2 }}
-                  >
-                    {course.description}
-                  </Typography>
-                </Box>
+              <CardContent>
+                <Typography variant="subtitle1" fontWeight="bold" sx={{ mb: 1 }}>
+                  {creation.title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Created by {creation.creator}
+                </Typography>
 
-                {/* Buy Now Button */}
-                <Box>
-                  <Tooltip title={`Buy this course for ₹${course.price}`} arrow>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    mt: 2,
+                  }}
+                >
+                  {creation.status === "Completed" ? (
                     <Button
-                      variant="outlined"
-                      startIcon={<ShoppingCartIcon />}
+                      variant="contained"
+                      startIcon={<PlayCircleOutlineIcon />}
                       sx={{
-                        borderColor: "#FF5722",
-                        color: "#FF5722",
-                        fontWeight: "bold",
-                        fontSize: "0.9rem",
+                        backgroundColor: "#1976d2",
+                        color: "#fff",
+                        fontSize: "0.8rem",
                         textTransform: "none",
                         "&:hover": {
-                          borderColor: "#E64A19",
-                          color: "#E64A19",
+                          backgroundColor: "#1565c0",
                         },
                       }}
-                      onClick={() => alert(`Redirecting to payment for ${course.title}`)}
                     >
-                      Buy Now
+                      Watch
                     </Button>
-                  </Tooltip>
+                  ) : (
+                    <Tooltip title="In Progress" arrow>
+                      <Button
+                        variant="outlined"
+                        sx={{
+                          borderColor: "#FF5722",
+                          color: "#FF5722",
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          fontSize: "0.8rem",
+                          "&:hover": {
+                            borderColor: "#E64A19",
+                            color: "#E64A19",
+                          },
+                        }}
+                      >
+                        Coming Soon
+                      </Button>
+                    </Tooltip>
+                  )}
+                  <Typography variant="caption" sx={{ color: "#555" }}>
+                    {creation.status}
+                  </Typography>
                 </Box>
               </CardContent>
             </Card>
           </Grid>
         ))}
-        {/* No Results Found */}
-        {filteredCourses.length === 0 && (
-          <Typography
-            variant="h6"
-            sx={{ textAlign: "center", color: "#888", mt: 4 }}
-          >
-            No courses found.
-          </Typography>
-        )}
       </Grid>
+
+      {filteredCreations.length === 0 && (
+        <Typography variant="h6" sx={{ textAlign: "center", color: "#888", mt: 4 }}>
+          No creations found.
+        </Typography>
+      )}
     </Box>
   );
 }

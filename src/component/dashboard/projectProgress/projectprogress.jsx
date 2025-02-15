@@ -14,22 +14,22 @@ import LinearProgress from "@mui/material/LinearProgress";
 import BuildIcon from "@mui/icons-material/Build";
 
 const projectProgressData = [
-  {
-    title: "E-Commerce Website Progress",
-    completed: 80,
-    remaining: 20,
-    builderLink: "/builder/ecommerce",
-    previewImage:
-      "https://xdfile.com/wp-content/uploads/2021/01/Free-E-Commerce-App-XD-UI-Design-1024x715.jpg",
-  },
-  {
-    title: "Portfolio Website Progress",
-    completed: 60,
-    remaining: 40,
-    builderLink: "/builder/portfolio",
-    previewImage:
-      "https://s3-figma-hubfile-images-production.figma.com/hub/file/carousel/img/70b290e955b05e07a037149d731fcedb9232ee68",
-  },
+  // {
+  //   title: "E-Commerce Website Progress",
+  //   completed: 80,
+  //   remaining: 20,
+  //   builderLink: "/builder/ecommerce",
+  //   previewImage:
+  //     "https://xdfile.com/wp-content/uploads/2021/01/Free-E-Commerce-App-XD-UI-Design-1024x715.jpg",
+  // },
+  // {
+  //   title: "Portfolio Website Progress",
+  //   completed: 60,
+  //   remaining: 40,
+  //   builderLink: "/builder/portfolio",
+  //   previewImage:
+  //     "https://s3-figma-hubfile-images-production.figma.com/hub/file/carousel/img/70b290e955b05e07a037149d731fcedb9232ee68",
+  // },
 ];
 
 export default function ProjectProgress() {
